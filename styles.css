@@ -1,4 +1,46 @@
 /* ... Basic Reset and Header Styles (KEEP EXISTING CODE) ... */
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    height: 100%;
+    overflow: hidden; /* Hide scrollbars */
+    background-color: #f0f0f0;
+}
+
+/* --- Header & Navigation --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5%;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* ... other nav styles (nav-link, nav-button) ... */
+
+/* --- About Overlay (Hidden Menu) --- */
+.overlay {
+    height: 100%;
+    width: 0; /* HIDDEN BY DEFAULT: THIS IS CRITICAL FOR THE OVERLAY EFFECT */
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    background-color: rgba(240, 240, 240, 0.95);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
 
 /* --- Project Slider Container (Main Page) --- */
 .project-slider-container {
