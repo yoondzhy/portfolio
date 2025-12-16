@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Projects</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="portfolio-content">
+        <h2>My Projects</h2>
+
+        <div class="course-filter">
+            <button class="filter-btn active" data-course="all">Show All</button>
+            <button class="filter-btn" data-course="course-a">P1: Small Multiples</button>
+            <button class="filter-btn" data-course="course-b">P2: Infographics</button>
+            <button class="filter-btn" data-course="course-c">P3: Data Visualization</button>
+        </div>
+
+        <div class="project-grid">
+            <div class="project-card" data-course="course-a">
+                <h3>Project 1: Small Multiples</h3>
+                <p class="explanation">This poster illustrates the richness of Kazakh cuisine in its diversity and each nation’s significance on our sacred dastarkhan. There are mainly dishes from various countries deeply woven into our daily eating habits, ones I especially love and miss, as well as some of the irreplaceable and significant dishes of authentic Kazakh cuisine, without which dastarkhan wouldn’t be complete. </p>
+                </div>
+
+            <div class="project-card" data-course="course-a">
+                <h3>Project 2: Infographics</h3>
+                <p class="explanation">Doomscrolling yall</p>
+            </div>
+
+            <div class="project-card" data-course="course-b">
+                <h3>Project 3: Data Visualization</h3>
+                <p class="explanation">lots of coding and data manipulation</p>
+            </div>
+            
+            </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mackedoniy. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
