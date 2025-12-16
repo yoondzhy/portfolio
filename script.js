@@ -96,10 +96,32 @@ window.closeAbout = function() {
 }
 
 
+// --- 3. Project Slider Logic (Modified for Scope) ---
+let currentSlide = 0;
+let totalSlides; 
+let sliderWrapper; // Define globally, but assign later
+let prevBtn;
+let nextBtn;
+
+// ... all other functions (updateSlider, nextSlide, prevSlide, etc.) ...
+
 // --- 5. Initialization on Document Load ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Assign variables only AFTER the DOM is loaded
+    sliderWrapper = document.querySelector('.slider-wrapper');
+    prevBtn = document.querySelector('.prev-btn');
+    nextBtn = document.querySelector('.next-btn');
+    
+    // Check if elements exist before rendering/binding (safety first)
+    if (!sliderWrapper || !prevBtn || !nextBtn) {
+        console.error("Slider elements not found. Check HTML structure.");
+        return;
+    }
+
     renderProjects(); 
     totalSlides = projects.length; 
+    
+    // ... rest of the logic ...
     
     if (nextBtn && prevBtn) {
         nextBtn.addEventListener('click', nextSlide);
