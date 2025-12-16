@@ -3,37 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Portfolio</title>
+    <title>Your Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Projects Slider -->
+        <div class="slider-container">
+            <button class="nav-arrow prev" id="prevBtn">‹</button>
+            <div class="slider" id="slider">
+                <div class="slide active">
+                    <div class="poster">
+                        <img src="p1.png" alt="Project 1 Poster">
+                    </div>
+                    <div class="project-info">
+                        <h2>Project 1</h2>
+                        <p>Your first project description goes here. This is the main featured project that showcases your primary work. Add details about technologies used, challenges solved, and results achieved.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="poster">
+                        <img src="p2.jpg" alt="Project 2 Poster">
+                    </div>
+                    <div class="project-info">
+                        <h2>Project 2</h2>
+                        <p>Second project details. Describe the scope, your role, technologies, and key achievements of this project.</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="poster">
+                        <img src="p3.png" alt="Project 3 Poster">
+                    </div>
+                    <div class="project-info">
+                        <h2>Project 3</h2>
+                        <p>Third project overview. Include specifics about the problem solved, your contributions, and impact.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="nav-arrow next" id="nextBtn">›</button>
+            <div class="dots-container" id="dots"></div>
+        </div>
 
-    <div id="about-overlay" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeAbout()">&times;</a>
-        <div class="overlay-content">
-            <h2>About Me</h2>
-            <p>Hello! I am a student specializing in Information Design. This portfolio showcases key projects where I focused on visualizing complex data and improving information hierarchy.</p>
-            
-            <h3>My Background</h3>
-            <p>I believe that effective design lies in clarity, accessibility, and user-centric problem-solving. My work spans data visualization, infographics, and user experience analysis.</p>
+        <!-- About Me Page -->
+        <div class="about-page" id="aboutPage">
+            <button class="back-btn" id="backBtn">← Back to Projects</button>
+            <div class="about-content">
+                <h1>About Me</h1>
+                <p>Technical student/researcher specializing in data visualization, social network analysis, and K-pop fandom analytics. Proficient in D3.js, p5.js, MATLAB, and Adobe Illustrator.</p>
+                <div class="skills-grid">
+                    <div class="skill">Data Visualization</div>
+                    <div class="skill">Network Analysis</div>
+                    <div class="skill">K-pop Analytics</div>
+                    <div class="skill">Interactive Design</div>
+                    <div class="skill">Cognitive Science</div>
+                    <div class="skill">JavaScript</div>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <header>
-        <nav>
-            <a href="#" class="nav-link" id="home-link">Projects</a>
-            <button class="nav-button" onclick="openAbout()">About Me</button>
-        </nav>
-    </header>
-
-    <main class="project-slider-container">
-        <div class="slider-wrapper">
-             </div>
-        
-        <button class="slider-btn prev-btn" aria-label="Previous Project"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-btn next-btn" aria-label="Next Project"><i class="fas fa-chevron-right"></i></button>
-    </main>
 
     <script src="script.js"></script>
 </body>
