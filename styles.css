@@ -51,7 +51,7 @@
 }
 
 .project-visual img {
-    /* 🚨 IMAGE RESIZING FIX: Forces images to fit their container */
+    /* 🚨 IMAGE RESIZING FIX: This is the critical part */
     width: 100%; 
     height: auto; /* Maintains aspect ratio */
     display: block;
