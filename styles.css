@@ -56,21 +56,23 @@ body {
 .slide.prev {
     transform: translateX(-100%);
 }
-
 .poster {
-    flex: 0 0 45%;
-    padding: 40px;
+    flex: 0 0 40%; /* Slightly smaller container */
+    padding: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .poster img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90%; /* Reduced from 100% */
+    max-height: 85%; /* Reduced from 100% */
+    width: 350px; /* Fixed max width */
+    height: 450px; /* Fixed max height */
+    object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    object-fit: cover;
+}
 }
 
 .project-info {
