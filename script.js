@@ -1,40 +1,71 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Project Card Click (Toggle Explanation)
-    const projectCards = document.querySelectorAll('.project-card');
+// --- 1. Project Slider Logic ---
+let currentSlide = 0;
+const slides = document.querySelectorAll('.project-slide');
+const totalSlides = slides.length;
+const sliderWrapper = document.querySelector('.slider-wrapper');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
+
+/**
+ * Updates the position of the slider wrapper to show the current slide.
+ */
+function updateSlider() {
+    // Calculate the percentage translation needed (e.g., 0%, -100%, -200%)
+    const offset = -currentSlide * 100; 
+    sliderWrapper.style.transform = `translateX(${offset}%)`;
     
-    projectCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Toggle the 'expanded' class on the clicked card
-            card.classList.toggle('expanded');
-        });
-    });
+    // Disable/enable buttons based on current slide position
+    prevBtn.disabled = currentSlide === 0;
+    nextBtn.disabled = currentSlide === totalSlides - 1;
+}
 
-
-    // 2. Course Filter Logic
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectGrid = document.querySelector('.project-grid');
-
-    if (filterButtons.length > 0 && projectGrid) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const selectedCourse = event.target.getAttribute('data-course');
-                
-                // Update active button state
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-
-                // Filter projects
-                const allProjects = projectGrid.querySelectorAll('.project-card');
-                allProjects.forEach(project => {
-                    const projectCourse = project.getAttribute('data-course');
-                    
-                    if (selectedCourse === 'all' || projectCourse === selectedCourse) {
-                        project.style.display = 'block'; // Show project
-                    } else {
-                        project.style.display = 'none';  // Hide project
-                    }
-                });
-            });
-        });
+/**
+ * Moves to the next slide.
+ */
+function nextSlide() {
+    if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlider();
     }
-});
+}
+
+/**
+ * Moves to the previous slide.
+ */
+function prevSlide() {
+    if (currentSlide > 0) {
+        currentSlide--;
+        updateSlider();
+    }
+}
+
+// Add event listeners for the navigation buttons
+if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+}
+
+// Initialize the slider position on page load
+updateSlider(); 
+
+
+// --- 2. About Me Overlay Logic ---
+const aboutOverlay = document.getElementById('about-overlay');
+
+/**
+ * Opens the About Me overlay (expands width from 0 to 100%).
+ */
+window.openAbout = function() {
+    if (aboutOverlay) {
+        aboutOverlay.style.width = "100%";
+    }
+}
+
+/**
+ * Closes the About Me overlay (shrinks width back to 0).
+ */
+window.closeAbout = function() {
+    if (aboutOverlay) {
+        aboutOverlay.style.width = "0%";
+    }
+}
