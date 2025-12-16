@@ -1,226 +1,271 @@
-/* Basic Reset */
+/* styles.css */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body, html {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    height: 100%;
-    overflow: hidden; /* Скрыть полосы прокрутки для эффекта слайдера */
-    background-color: #f0f0f0;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* --- Header & Navigation Styles --- */
-header {
+.container {
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Slider Styles */
+.slider-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide.prev {
+    transform: translateX(-100%);
+}
+
+.poster {
+    flex: 0 0 45%;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poster img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
+.project-info {
+    flex: 1;
+    padding: 60px 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-info h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.project-info p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.2);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* Dots */
+.dots-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: white;
+    transform: scale(1.3);
+}
+
+/* About Page */
+.about-page {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 5%;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    z-index: 1000;
+    height: 100%;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    display: none;
+    z-index: 100;
+    padding: 40px 20px;
+    overflow-y: auto;
+}
+
+.about-page.active {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-.nav-link {
-    text-decoration: none;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-}
-
-.nav-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
-}
-
-.nav-button:hover {
-    background-color: #0056b3;
-}
-
-/* --- Project Slider Container (Main Page) --- */
-.project-slider-container {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.slider-wrapper {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease-in-out; 
-}
-
-.project-slide {
-    min-width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    padding: 0 5%; 
-    background-color: var(--slide-bg, #fff); 
-}
-
-/* --- Content Layout: Left Image / Right Text --- */
-
-.project-content {
-    width: 100%;
-    max-width: 1100px; 
-    padding-top: 60px; 
-}
-
-.project-layout {
-    display: flex;
-    gap: 40px; /* Промежуток между изображением и текстом */
-    align-items: center; 
-    padding: 20px;
-}
-
-/* Image Side (Left) */
-.project-visual {
-    flex: 0 0 55%; 
-    max-height: 60vh; 
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-}
-
-.project-visual img {
-    /* ФИКС: Гарантирует, что изображение не будет переразмерено */
-    width: 100%; 
-    height: auto; 
-    display: block;
-    object-fit: contain; 
-}
-
-/* Text Side (Right) */
-.project-text {
-    flex: 1 1 45%; 
-    padding-right: 20px;
-}
-
-.project-text h1 {
-    font-size: 2.2em;
-    margin-bottom: 10px;
-    color: #007bff;
-}
-
-.project-course {
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-.project-description {
-    font-size: 1.1em;
-    line-height: 1.6;
-}
-
-/* --- Slider Navigation Buttons --- */
-.slider-btn {
+.back-btn {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
+    top: 30px;
+    left: 30px;
+    background: rgba(255,255,255,0.2);
+    border: 2px solid white;
     color: white;
-    border: none;
-    padding: 15px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 1rem;
     cursor: pointer;
-    z-index: 10;
-    font-size: 1.5em;
-    border-radius: 50%;
-    transition: background 0.3s;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
 }
 
-.slider-btn:hover {
-    background: rgba(0, 0, 0, 0.6);
+.back-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
 }
 
-.prev-btn {
-    left: 20px;
-}
-
-.next-btn {
-    right: 20px;
-}
-
-/* --- About Overlay (Стили для наложения) --- */
-.overlay {
-    height: 100%;
-    width: 0; /* Скрыто по умолчанию */
-    position: fixed;
-    z-index: 2000;
-    top: 0;
-    right: 0;
-    background-color: rgba(240, 240, 240, 0.95);
-    overflow-x: hidden;
-    transition: 0.5s;
-}
-
-.overlay-content {
-    position: relative;
-    top: 15%;
-    width: 80%;
-    max-width: 900px;
-    margin: auto;
+.about-content {
+    max-width: 800px;
     text-align: center;
-    color: #333;
-    padding: 20px;
+    color: white;
 }
 
-.overlay-content h2 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: #007bff;
+.about-content h1 {
+    font-size: 4rem;
+    margin-bottom: 30px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
-    text-decoration: none;
-    color: #333;
-    transition: 0.3s;
+.about-content p {
+    font-size: 1.4rem;
+    margin-bottom: 50px;
+    line-height: 1.6;
+    opacity: 0.95;
 }
 
-.closebtn:hover {
-    color: #ff5252;
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
+.skill {
+    background: rgba(255,255,255,0.2);
+    padding: 20px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
 
-/* --- Media Queries for Smaller Screens (Адаптивность) --- */
-@media (max-width: 900px) {
-    .project-layout {
-        flex-direction: column; /* Размещает изображение и текст вертикально */
+.skill:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-5px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .slider-container {
+        padding: 20px 10px;
+    }
+    
+    .slide {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .poster {
+        flex: none;
+        height: 40%;
+        padding: 20px 0;
+    }
+    
+    .project-info {
+        padding: 20px;
         text-align: center;
-        gap: 20px;
-        padding-top: 20px;
     }
     
-    .project-visual {
-        flex: 0 0 auto; 
-        max-width: 90%;
-        max-height: 40vh;
-    }
-
-    .project-text {
-        padding-right: 0;
+    .project-info h2 {
+        font-size: 2.5rem;
     }
     
-    .project-text h1 {
-        font-size: 1.8em;
+    .nav-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    
+    .about-content h1 {
+        font-size: 2.5rem;
     }
 }
