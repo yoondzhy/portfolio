@@ -22,7 +22,6 @@ const projects = [
         imageSrc: "p3.png", 
         imageAlt: "Typographic System Mockup"
     }
-    // To add a new project, just copy and paste a block here and update the values!
 ];
 
 
@@ -47,20 +46,20 @@ function renderProjects() {
                     </div>
 
                 </div>
-                </div>
+            </div>
         </div>
     `).join(''); 
 }
 
-// --- 3. Project Slider Logic (KEPT AS BEFORE) ---
+// --- 3. Project Slider Logic Variables ---
 let currentSlide = 0;
 let totalSlides; 
-const sliderWrapper = document.querySelector('.slider-wrapper');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
+let sliderWrapper; // Assigned inside DOMContentLoaded
+let prevBtn;       // Assigned inside DOMContentLoaded
+let nextBtn;       // Assigned inside DOMContentLoaded
 
 function updateSlider() {
-    if (!totalSlides) return; 
+    if (!totalSlides || !sliderWrapper) return; 
     const offset = -currentSlide * 100; 
     sliderWrapper.style.transform = `translateX(${offset}%)`;
     prevBtn.disabled = currentSlide === 0;
@@ -81,7 +80,7 @@ function prevSlide() {
     }
 }
 
-// --- 4. About Me Overlay Logic (KEPT AS BEFORE) ---
+// --- 4. About Me Overlay Logic ---
 window.openAbout = function() {
     const aboutOverlay = document.getElementById('about-overlay');
     if (aboutOverlay) {
@@ -96,15 +95,6 @@ window.closeAbout = function() {
 }
 
 
-// --- 3. Project Slider Logic (Modified for Scope) ---
-let currentSlide = 0;
-let totalSlides; 
-let sliderWrapper; // Define globally, but assign later
-let prevBtn;
-let nextBtn;
-
-// ... all other functions (updateSlider, nextSlide, prevSlide, etc.) ...
-
 // --- 5. Initialization on Document Load ---
 document.addEventListener('DOMContentLoaded', () => {
     // Assign variables only AFTER the DOM is loaded
@@ -112,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn = document.querySelector('.prev-btn');
     nextBtn = document.querySelector('.next-btn');
     
-    // Check if elements exist before rendering/binding (safety first)
     if (!sliderWrapper || !prevBtn || !nextBtn) {
         console.error("Slider elements not found. Check HTML structure.");
         return;
@@ -120,8 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderProjects(); 
     totalSlides = projects.length; 
-    
-    // ... rest of the logic ...
     
     if (nextBtn && prevBtn) {
         nextBtn.addEventListener('click', nextSlide);
