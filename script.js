@@ -1,31 +1,32 @@
 // --- 1. Centralized Project Data Array ---
+// NOTE: Ensure your image files (p1.png, p2.jpg, p3.png) are in the same directory as index.html
 const projects = [
     {
         title: "Project 1: The Climate Data Dashboard",
         course: "Course: Data Visualization",
-        description: "This project involved designing an interactive dashboard to communicate complex local climate trends to policymakers...",
-        imageSrc: "p1.png", // <--- SIMPLIFIED IMAGE NAME
+        description: "This project involved designing an interactive dashboard to communicate complex local climate trends to policymakers. Key features include temporal filtering and comparison views. The goal was to transform raw data into actionable insights.",
+        imageSrc: "p1.png", 
         imageAlt: "Climate Dashboard Mockup"
     },
     {
         title: "Project 2: Process Flow Infographic",
         course: "Course: Information Hierarchy",
-        description: "A detailed infographic created to simplify the onboarding process for new employees...",
-        imageSrc: "p2.jpg", // <--- SIMPLIFIED IMAGE NAME
+        description: "A detailed infographic created to simplify the onboarding process for new employees. Using a combination of illustration and clear directional cues, the complexity of the workflow was reduced by 40% based on initial testing.",
+        imageSrc: "p2.jpg", 
         imageAlt: "Process Flow Infographic"
     },
     {
         title: "Project 3: Typographic Systems",
         course: "Course: Visual Communication",
-        description: "Exploration of how typographic scale, weight, and color can establish hierarchy...",
-        imageSrc: "p3.png", // <--- SIMPLIFIED IMAGE NAME
+        description: "Exploration of how typographic scale, weight, and color can establish hierarchy and guide the reader's eye in long-form reports. The final design resulted in a significant improvement in readability scores.",
+        imageSrc: "p3.png", 
         imageAlt: "Typographic System Mockup"
     }
-    // ADD NEW PROJECTS HERE. You only need to edit this list!
+    // To add a new project, just copy and paste a block here and update the values!
 ];
 
 
-// --- 2. Function to Render Projects from Data ---
+// --- 2. Function to Render Projects with Left/Right Layout ---
 function renderProjects() {
     const sliderWrapper = document.querySelector('.slider-wrapper');
     if (!sliderWrapper) return;
@@ -33,46 +34,39 @@ function renderProjects() {
     sliderWrapper.innerHTML = projects.map((project, index) => `
         <div class="project-slide" data-index="${index}">
             <div class="project-content">
-                <div class="project-layout">
+                <div class="project-layout"> 
+                    
                     <div class="project-visual">
                         <img src="${project.imageSrc}" alt="${project.imageAlt}">
                     </div>
+                    
                     <div class="project-text">
                         <h1>${project.title}</h1>
                         <p class="project-course">${project.course}</p>
                         <p class="project-description">${project.description}</p>
                     </div>
+
                 </div>
-            </div>
+                </div>
         </div>
-    `).join(''); // .join('') removes the commas between array elements
+    `).join(''); 
 }
 
-// --- 3. Project Slider Logic ---
+// --- 3. Project Slider Logic (KEPT AS BEFORE) ---
 let currentSlide = 0;
-let totalSlides; // Will be set after rendering
+let totalSlides; 
 const sliderWrapper = document.querySelector('.slider-wrapper');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 
-/**
- * Updates the position of the slider wrapper to show the current slide.
- */
 function updateSlider() {
-    // Only proceed if totalSlides is correctly set
     if (!totalSlides) return; 
-    
     const offset = -currentSlide * 100; 
     sliderWrapper.style.transform = `translateX(${offset}%)`;
-    
-    // Disable/enable buttons based on current slide position
     prevBtn.disabled = currentSlide === 0;
     nextBtn.disabled = currentSlide === totalSlides - 1;
 }
 
-/**
- * Moves to the next slide.
- */
 function nextSlide() {
     if (currentSlide < totalSlides - 1) {
         currentSlide++;
@@ -80,9 +74,6 @@ function nextSlide() {
     }
 }
 
-/**
- * Moves to the previous slide.
- */
 function prevSlide() {
     if (currentSlide > 0) {
         currentSlide--;
@@ -90,7 +81,7 @@ function prevSlide() {
     }
 }
 
-// --- 4. About Me Overlay Logic (Keep as before) ---
+// --- 4. About Me Overlay Logic (KEPT AS BEFORE) ---
 window.openAbout = function() {
     const aboutOverlay = document.getElementById('about-overlay');
     if (aboutOverlay) {
@@ -107,18 +98,12 @@ window.closeAbout = function() {
 
 // --- 5. Initialization on Document Load ---
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Render all projects from the data array
     renderProjects(); 
-
-    // 2. Set the total number of slides
     totalSlides = projects.length; 
     
-    // 3. Add event listeners now that the buttons exist
     if (nextBtn && prevBtn) {
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
     }
-
-    // 4. Set initial slider position
     updateSlider(); 
 });
