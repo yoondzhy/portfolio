@@ -1,5 +1,6 @@
 // --- 1. Centralized Project Data Array ---
-// NOTE: Ensure your image files (p1.png, p2.jpg, p3.png) are in the same directory as index.html
+// ВНИМАНИЕ: Убедитесь, что файлы изображений (p1.png, p2.jpg, p3.png) 
+// находятся в той же директории, что и index.html
 const projects = [
     {
         title: "Project 1: The Climate Data Dashboard",
@@ -30,6 +31,7 @@ function renderProjects() {
     const sliderWrapper = document.querySelector('.slider-wrapper');
     if (!sliderWrapper) return;
 
+    // Генерируем HTML для каждого проекта
     sliderWrapper.innerHTML = projects.map((project, index) => `
         <div class="project-slide" data-index="${index}">
             <div class="project-content">
@@ -51,12 +53,12 @@ function renderProjects() {
     `).join(''); 
 }
 
-// --- 3. Project Slider Logic Variables ---
+// --- 3. Project Slider Logic Variables and Functions ---
 let currentSlide = 0;
 let totalSlides; 
-let sliderWrapper; // Assigned inside DOMContentLoaded
-let prevBtn;       // Assigned inside DOMContentLoaded
-let nextBtn;       // Assigned inside DOMContentLoaded
+let sliderWrapper; 
+let prevBtn;       
+let nextBtn;       
 
 function updateSlider() {
     if (!totalSlides || !sliderWrapper) return; 
@@ -97,7 +99,7 @@ window.closeAbout = function() {
 
 // --- 5. Initialization on Document Load ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Assign variables only AFTER the DOM is loaded
+    // 1. Присваиваем переменным DOM-элементы (теперь, когда они загружены)
     sliderWrapper = document.querySelector('.slider-wrapper');
     prevBtn = document.querySelector('.prev-btn');
     nextBtn = document.querySelector('.next-btn');
@@ -107,12 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // 2. Рендерим контент проектов
     renderProjects(); 
     totalSlides = projects.length; 
     
+    // 3. Добавляем обработчики событий
     if (nextBtn && prevBtn) {
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
     }
+    
+    // 4. Устанавливаем начальную позицию
     updateSlider(); 
 });
