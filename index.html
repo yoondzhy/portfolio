@@ -1,67 +1,39 @@
-<!DOCTYPE html>
+---
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import Footer from "../components/Footer.astro";
+import { siteConfig } from "../config";
+import "../styles/global.css";
+---
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Projects Slider -->
-        <div class="slider-container">
-            <button class="nav-arrow prev" id="prevBtn">‹</button>
-            <div class="slider" id="slider">
-                <div class="slide active">
-                    <div class="poster">
-                        <img src="p1.jpg" alt="Project 1 Poster">
-                    </div>
-                    <div class="project-info">
-                        <h2>Project 1</h2>
-                        <p>Your first project description goes here. This is the main featured project that showcases your primary work. Add details about technologies used, challenges solved, and results achieved.</p>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="poster">
-                        <img src="p2.jpg" alt="Project 2 Poster">
-                    </div>
-                    <div class="project-info">
-                        <h2>Project 2</h2>
-                        <p>Second project details. Describe the scope, your role, technologies, and key achievements of this project.</p>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="poster">
-                        <img src="p3.jpg" alt="Project 3 Poster">
-                    </div>
-                    <div class="project-info">
-                        <h2>Project 3</h2>
-                        <p>Third project overview. Include specifics about the problem solved, your contributions, and impact.</p>
-                    </div>
-                </div>
-            </div>
-            <button class="nav-arrow next" id="nextBtn">›</button>
-            <div class="dots-container" id="dots"></div>
-        </div>
-
-        <!-- About Me Page -->
-        <div class="about-page" id="aboutPage">
-            <button class="back-btn" id="backBtn">← Back to Projects</button>
-            <div class="about-content">
-                <h1>About Me</h1>
-                <p>Technical student/researcher specializing in data visualization, social network analysis, and K-pop fandom analytics. Proficient in D3.js, p5.js, MATLAB, and Adobe Illustrator.</p>
-                <div class="skills-grid">
-                    <div class="skill">Data Visualization</div>
-                    <div class="skill">Network Analysis</div>
-                    <div class="skill">K-pop Analytics</div>
-                    <div class="skill">Interactive Design</div>
-                    <div class="skill">Cognitive Science</div>
-                    <div class="skill">JavaScript</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={siteConfig.description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{siteConfig.name} - {siteConfig.title}</title>
+  </head>
+  <body>
+    <Header />
+    <section>
+      <Hero />
+      <About />
+      <Projects />
+      <Experience />
+      <Education />
+    </section>
+    <Footer />
+  </body>
 </html>
