@@ -3,31 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me - Portfolio</title>
+    <title>Amanbay Makhabbat Assylbekkyzy - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+
+    <div id="about-overlay" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeAbout()">&times;</a>
+        <div class="overlay-content">
+            <h2>About Me</h2>
+            <p>Hello! I am a student specializing in Information Design. This portfolio showcases key projects where I focused on visualizing complex data and improving information hierarchy.</p>
+            
+            <h3>My Background</h3>
+            <p>I believe that effective design lies in clarity, accessibility, and user-centric problem-solving. My work spans data visualization, infographics, and user experience analysis.</p>
+
+            </div>
+    </div>
+    
     <header>
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="portfolio.html">Portfolio</a></li>
-            </ul>
+            <a href="#" class="nav-link" id="home-link">Projects</a>
+            <button class="nav-button" onclick="openAbout()">About Me</button>
         </nav>
     </header>
 
-    <main class="about-content">
-        <h2>About Me</h2>
-        <p>Hello! I am a second year Industrial Design student in KAIST. This portfolio highlights my work in visualizing complex data and communicating information effectively for my ID221 Information Desingn course.</p>
+    <main class="project-slider-container">
+        <div class="slider-wrapper">
+            
+            <div class="project-slide" data-index="0">
+                <div class="project-content">
+                    <h1>Project 1: The Climate Data Dashboard</h1>
+                    <p class="project-course">Course: Data Visualization</p>
+                    <p class="project-description">This project involved designing an interactive dashboard to communicate complex local climate trends to policymakers. Key features include temporal filtering and comparison views. The goal was to transform raw data into actionable insights. </p>
+                </div>
+            </div>
+            
+            <div class="project-slide" data-index="1">
+                <div class="project-content">
+                    <h1>Project 2: Process Flow Infographic</h1>
+                    <p class="project-course">Course: Information Hierarchy</p>
+                    <p class="project-description">A detailed infographic created to simplify the onboarding process for new employees. Using a combination of illustration and clear directional cues, the complexity of the workflow was reduced by 40% based on initial testing. </p>
+                </div>
+            </div>
+            
+            <div class="project-slide" data-index="2">
+                <div class="project-content">
+                    <h1>Project 3: Typographic Systems</h1>
+                    <p class="project-course">Course: Visual Communication</p>
+                    <p class="project-description">Exploration of how typographic scale, weight, and color can establish hierarchy and guide the reader's eye in long-form reports. The final design resulted in a significant improvement in readability scores. </p>
+                </div>
+            </div>
+            
+        </div>
         
-        <h3>My Goal</h3>
-        <p>To create accessible and engaging visual representations that solve real-world communication problems.</p>
+        <button class="slider-btn prev-btn" aria-label="Previous Project"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn next-btn" aria-label="Next Project"><i class="fas fa-chevron-right"></i></button>
+    </main>
 
-        </main>
-
-    <footer>
-        <p>&copy; 2025 Makimaki. All rights reserved.</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
